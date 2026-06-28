@@ -1,5 +1,6 @@
 package listeners;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -8,6 +9,8 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 
 import reports.ExtentManager;
+import base.baseClass;
+import utilities.ScreenshotUtility;
 
 public class TestListener implements ITestListener {
 
@@ -40,6 +43,28 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult result) {
 
         test.get().fail(result.getThrowable());
+
+        try {
+
+            WebDriver driver =
+                    ((baseClass) result.getInstance()).getDriver();
+
+            String screenshotPath =
+                    ScreenshotUtility.captureScreenshot(
+                            driver,
+                            result.getMethod().getMethodName());
+
+            test.get()
+                    .addScreenCaptureFromPath(screenshotPath);
+
+        }
+
+        catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
     }
 
     @Override

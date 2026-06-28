@@ -14,16 +14,20 @@ import constants.frameworkConstants;
 
 public class ScreenshotUtility {
 
-    /**
-     * Captures a screenshot and returns its path.
-     */
-    public static String captureScreenshot(WebDriver driver, String testName)
+    private ScreenshotUtility() {
+
+    }
+
+    public static String captureScreenshot(WebDriver driver,
+                                           String testName)
             throws IOException {
 
-        String timeStamp = LocalDateTime.now()
-                .format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+        String timeStamp =
+                LocalDateTime.now()
+                        .format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
 
-        String fileName = testName + "_" + timeStamp + ".png";
+        String fileName =
+                testName + "_" + timeStamp + ".png";
 
         String destination =
                 frameworkConstants.SCREENSHOT_PATH + fileName;
@@ -32,8 +36,10 @@ public class ScreenshotUtility {
                 ((TakesScreenshot) driver)
                         .getScreenshotAs(OutputType.FILE);
 
-        FileUtils.copyFile(source, new File(destination));
+        FileUtils.copyFile(source,
+                new File(destination));
 
         return destination;
     }
+
 }

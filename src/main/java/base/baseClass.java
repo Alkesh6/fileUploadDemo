@@ -21,6 +21,10 @@ public class baseClass {
     protected Properties properties;
     protected Logger logger = Log.getLogger(baseClass.class);
     
+    public WebDriver getDriver() {
+    	return driver;
+    }
+    
     @BeforeMethod
     public void setup() throws IOException {
 

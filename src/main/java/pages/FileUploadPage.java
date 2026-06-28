@@ -9,7 +9,7 @@ import logger.Log;
 import utilities.FileUtility;
 import utilities.WaitUtility;
 
-public class FileUploadPage {
+public class FileUploadPage{
 
     private WebDriver driver;
     private WaitUtility waitUtility;
