@@ -16,7 +16,6 @@
     <maven.compiler.release>17</maven.compiler.release>
   </properties>
 
-  <dependencyManagement>
     <dependencies>
         <!-- Source: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
     <dependency>
@@ -107,7 +106,5 @@
 </dependency>    
     
     </dependencies>
-  </dependencyManagement>
-
   
 </project>

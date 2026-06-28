@@ -1,0 +1,43 @@
+##################################################
+# Browser Configuration
+##################################################
+browser=chrome
+
+##################################################
+# Application URL
+##################################################
+applicationURL=https://practice-automation.com/file-upload/
+
+##################################################
+# Wait Configuration
+##################################################
+implicitWait=10
+explicitWait=20
+pageLoadTimeout=30
+
+##################################################
+# Screenshot Configuration
+##################################################
+screenshotPath=Screenshots/
+
+##################################################
+# Report Configuration
+##################################################
+reportPath=Reports/
+
+##################################################
+# Log Configuration
+##################################################
+logPath=Logs/
+
+##################################################
+# Upload File Location
+##################################################
+uploadFile=UploadFiles/sample.pdf
+
+##################################################
+# Email Configuration
+##################################################
+senderEmail=YOUR_EMAIL
+senderPassword=YOUR_GMAIL_APP_PASSWORD
+receiverEmail=RECEIVER_EMAIL

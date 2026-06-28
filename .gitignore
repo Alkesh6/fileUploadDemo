@@ -54,6 +54,9 @@ Screenshots/
 .DS_Store
 Thumbs.db
 
+# Local configuration
+src/main/resources/config.properties
+
 ###########################################################
 # Temporary Files
 ###########################################################
