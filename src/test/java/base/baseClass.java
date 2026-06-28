@@ -7,38 +7,24 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import constants.frameworkConstants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class baseClass {
 
-    protected static WebDriver driver;
-    protected static Properties properties;
+    protected WebDriver driver;
+    protected Properties properties;
 
-    /**
-     * Loads the configuration file.
-     */
-    public static void loadProperties() throws IOException {
-
-        properties = new Properties();
-
-        FileInputStream fis = new FileInputStream(
-                frameworkConstants.CONFIG_FILE_PATH);
-
-        properties.load(fis);
-
-        fis.close();
-    }
-
-    /**
-     * Initializes the browser and launches the application.
-     */
-    public static void initializeBrowser() throws IOException {
+    @BeforeMethod
+    public void setup() throws IOException {
 
         loadProperties();
 
-        String browser = properties.getProperty("browser").toLowerCase();
+        String browser =
+                properties.getProperty("browser").toLowerCase();
 
         switch (browser) {
 
@@ -47,14 +33,6 @@ public class baseClass {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
             break;
-
-        /*
-        case "edge":
-
-            WebDriverManager.edgedriver().setup();
-            driver = new EdgeDriver();
-            break;
-        */
 
         default:
 
@@ -75,22 +53,27 @@ public class baseClass {
         driver.get(properties.getProperty("applicationURL"));
     }
 
-    /**
-     * Returns the active WebDriver instance.
-     */
-    public static WebDriver getDriver() {
+    private void loadProperties() throws IOException {
 
-        return driver;
+        properties = new Properties();
+
+        FileInputStream fis =
+                new FileInputStream(frameworkConstants.CONFIG_FILE_PATH);
+
+        properties.load(fis);
+
+        fis.close();
     }
 
-    /**
-     * Closes the browser.
-     */
-    public static void tearDown() {
+    @AfterMethod
+    public void tearDown() {
 
-        if (driver != null) {
+        if(driver != null) {
 
             driver.quit();
+
         }
+
     }
+
 }

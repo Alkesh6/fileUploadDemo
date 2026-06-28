@@ -8,6 +8,8 @@ browser=chrome
 ##################################################
 applicationURL=https://practice-automation.com/file-upload/
 
+expectedUploadMessage=Thank you for your message. It has been sent.
+
 ##################################################
 # Wait Configuration
 ##################################################

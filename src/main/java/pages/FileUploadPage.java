@@ -14,7 +14,7 @@ public class FileUploadPage {
     // Locators
     private By chooseFileInput = By.id("file-upload");
     private By uploadButton = By.id("upload-btn");
-    private By uploadMessage = By.id("wfu_messageblock_header_1_label_1");
+    private By uploadMessage = By.xpath("//div[@class='wpcf7-response-output']");
 
     /**
      * Constructor
@@ -50,7 +50,18 @@ public class FileUploadPage {
         return waitUtility
                 .waitForVisibility(driver.findElement(uploadMessage))
                 .getText();
-    }
+    } 
+    
+   /* public String getUploadMessage() {
+
+        String message = waitUtility
+                .waitForVisibility(driver.findElement(uploadMessage))
+                .getText();
+
+        System.out.println("Upload Message : " + message);
+
+        return message;
+    }   */
 
     /**
      * Verifies successful upload.
@@ -58,7 +69,7 @@ public class FileUploadPage {
     public boolean isUploadSuccessful() {
 
         return getUploadMessage()
-                .contains("successfully uploaded");
+                .contains("Thank you for your message. It has been sent.");
     }
 
 }
