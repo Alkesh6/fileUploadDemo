@@ -4,7 +4,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
+import org.apache.logging.log4j.Logger;
 
+import logger.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -17,15 +19,18 @@ public class baseClass {
 
     protected WebDriver driver;
     protected Properties properties;
-
+    protected Logger logger = Log.getLogger(baseClass.class);
+    
     @BeforeMethod
     public void setup() throws IOException {
 
+    	logger.info("Loading configuration...");
         loadProperties();
 
         String browser =
                 properties.getProperty("browser").toLowerCase();
 
+        logger.info("Launching Chrome browser...");
         switch (browser) {
 
         case "chrome":
@@ -50,8 +55,12 @@ public class baseClass {
                 Duration.ofSeconds(
                         Long.parseLong(properties.getProperty("pageLoadTimeout"))));
 
+        logger.info("Opening application URL...");
         driver.get(properties.getProperty("applicationURL"));
+        logger.info("Browser launched successfully.");
     }
+    
+    
 
     private void loadProperties() throws IOException {
 

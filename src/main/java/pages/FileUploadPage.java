@@ -2,6 +2,9 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.apache.logging.log4j.Logger;
+
+import logger.Log;
 
 import utilities.FileUtility;
 import utilities.WaitUtility;
@@ -10,6 +13,7 @@ public class FileUploadPage {
 
     private WebDriver driver;
     private WaitUtility waitUtility;
+    private Logger logger = Log.getLogger(FileUploadPage.class);
 
     // Locators
     private By chooseFileInput = By.id("file-upload");
@@ -30,6 +34,7 @@ public class FileUploadPage {
      */
     public void uploadFile(String fileName) {
 
+    	logger.info("Uploading file : " + fileName);
         driver.findElement(chooseFileInput)
               .sendKeys(FileUtility.getUploadFilePath(fileName));
     }
@@ -39,6 +44,7 @@ public class FileUploadPage {
      */
     public void clickUpload() {
 
+    	logger.info("Clicking Upload button");
         driver.findElement(uploadButton).click();
     }
 
@@ -47,6 +53,7 @@ public class FileUploadPage {
      */
     public String getUploadMessage() {
 
+    	logger.info("Reading upload confirmation message");
         return waitUtility
                 .waitForVisibility(driver.findElement(uploadMessage))
                 .getText();
